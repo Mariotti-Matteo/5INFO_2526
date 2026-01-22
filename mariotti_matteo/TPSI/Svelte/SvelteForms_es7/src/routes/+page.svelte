@@ -1,4 +1,3 @@
-
 <script>
     export let data; // riceve i dati forniti dal backend durante il load della pagina
     export let form;
