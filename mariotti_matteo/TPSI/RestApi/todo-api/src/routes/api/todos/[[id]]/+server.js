@@ -1,4 +1,6 @@
 import { json } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
+import Database from "better-sqlite3";
 
 let todos = [
     {
@@ -45,7 +47,6 @@ export async function GET({params, request, url}) {
         const todo = todos.filter( t => t.id == params.id)[0];
         return json(todo);
     } else {
-        // const url = new URL(request.url);
         let res = todos;
         if(url.searchParams.has('priority')){
             res = todos.filter (t => t.priority == +url.searchParams.get('priority'));
@@ -54,7 +55,6 @@ export async function GET({params, request, url}) {
         }
         return json(res);
     } 
-
 
 }
 
