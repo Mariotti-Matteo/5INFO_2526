@@ -84,31 +84,31 @@ export async function GET({params, request, url}) {
 
 }
 
-// export async function POST({request}) {
-//     try {
-//         const body = await request.json();
-//         console.log("Ricevuto HTTP POST con body", body)
+export async function POST({request}) {
+    try {
+        const body = await request.json();
+        console.log("Ricevuto HTTP POST con body", body)
 
-//         const sql_azione = db.prepare("INSERT INTO todo (task, done, priority) VALUES(@task, @done, @priority)");
+        const sql_azione = db.prepare("INSERT INTO todo (task, done, priority) VALUES(@task, @done, @priority)");
 
-//         const res = sql_azione.run({
-//             task: body.task,
-//             done: +body.done,
-//             priority: +body.priority,
-//         });
+        const res = sql_azione.run({
+            task: body.task,
+            done: +body.done,
+            priority: +body.priority,
+        });
 
-//         if (res.changes == 1) {
-//             body["id"] = res.lastInsertRowid;
-//             return json(body, {
-//                 status: 201,
-//                 headers: new Headers({"Location": `http://localhost:5173/api/todos/${body["id"]}`})
-//             })
-//         }
-//     } catch (e) {
-//     console.log(e)
-//     return json({}, {status:500})
-// }
-// }
+        if (res.changes == 1) {
+            body["id"] = res.lastInsertRowid;
+            return json(body, {
+                status: 201,
+                headers: new Headers({"Location": `http://localhost:5173/api/todos/${body["id"]}`})
+            })
+        }
+    } catch (e) {
+    console.log(e)
+    return json({}, {status:500})   
+    }
+}
 
 // export async function GET({params, request, url}) {
     
