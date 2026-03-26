@@ -177,7 +177,7 @@ export async function PATCH({ params, request }) {
         else if(res.changes == 1) {
             const todo = sql_get_todo.all(+params.id);
             return json(todo, {status: 200})
-        }
+         }
     } catch(e) {
         console.log(e)
         return json({}, { status: 500})
