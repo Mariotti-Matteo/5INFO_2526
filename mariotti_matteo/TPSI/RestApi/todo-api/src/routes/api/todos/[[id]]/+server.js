@@ -40,6 +40,13 @@ const db = new Database('TODO.db', { verbose: console.log });
 //     }
 // }
 
+export async function OPTIONS({request}) {
+    return new Response(null, {
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:5173',
+        }
+    })
+}
 
 export async function GET({params, request, url}) {
     console.log("Ricevuto HTTP GET con parametro:", params)
@@ -55,7 +62,7 @@ export async function GET({params, request, url}) {
         // console.log("5")
         if(todo.length > 0)
             return json(todo, {status:200})
-        else
+        else    
             return json({}, {status: 404})
     };
 
